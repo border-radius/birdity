@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/border-radius/birdity/issues"
   },
-  "homepage": "https://github.com/border-radius/birdity"
+  "homepage": "https://github.com/border-radius/birdity",
+  "dependencies": {
+    "body-parser": "^1.9.2",
+    "express": "^4.10.2"
+  }
 }
