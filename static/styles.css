@@ -84,3 +84,18 @@ button:disabled {
 	border-color: #00ff00;
 	color: #00ff00;
 }
+
+.hide {
+	display: none;
+}
+
+.otherwise {
+	position: absolute;
+	top: 20px;
+	right: 25px;
+}
+
+a.otherwise {
+	color: #fff;
+	text-decoration: none;
+}
