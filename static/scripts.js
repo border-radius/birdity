@@ -12,11 +12,15 @@ $('.invite button').click(function () {
 $('.invite .otherwise').click(function (e) {
 	$('.invite').addClass('hide');
 	$('.signin').removeClass('hide');
+	$('.signin input').eq(0).focus();
 	return false;
 });
 
 $('.signin .otherwise').click(function (e) {
 	$('.signin').addClass('hide');
 	$('.invite').removeClass('hide');
+	$('.invite input').eq(0).focus();
 	return false;
 });
+
+$('.invite input').eq(0).focus();
