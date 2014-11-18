@@ -44,7 +44,7 @@ button:hover {
 
 .sidebar .container {
 	margin-right: -20px;
-	width: 350px;
+	width: 400px;
 	float: right;
 	overflow-y: scroll;
 }
@@ -86,7 +86,7 @@ button:hover {
 }
 
 .item {
-	padding: 10px 20px;
+	padding: 15px 25px 15px 20px;
 	display: block;
 	font-size: 16px;
 	color: #ddd;
@@ -99,12 +99,12 @@ button:hover {
 }
 
 .item .userpic {
-	margin-right: 7px;
+	margin-right: 10px;
 	vertical-align: middle;
 }
 
 .item i {
-	margin-left: 12px;
+	margin-left: 18px;
 	margin-top: 6px;
 	float: right;
 	font-style: normal;
@@ -112,6 +112,8 @@ button:hover {
 }
 
 .thread {
+	padding-top: 20px;
+	padding-bottom: 20px;
 	font-size: 12px;
 }
 
@@ -126,6 +128,10 @@ input {
 	color: #fff;
 }
 
+input:focus {
+	border-bottom-color: #fff;
+}
+
 .roster input {
 	width: 100%;
 }
@@ -137,7 +143,7 @@ input {
 
 .history {
 	width: 100%;
-	padding: 25px;
+	padding: 25px 50px;
 	position: absolute;
 	bottom: 0;
 }
@@ -148,7 +154,7 @@ input {
 }
 
 .message .userpic {
-	margin-right: 7px;
+	margin-right: 10px;
 	vertical-align: middle;
 }
 
@@ -157,7 +163,12 @@ input {
 }
 
 .message.own .userpic {
-	margin: 0 0 0 7px;
+	margin: 0 0 0 10px;
+}
+
+.history form {
+	margin-top: 60px;
+	margin-bottom: 25px;
 }
 
 .history input {
