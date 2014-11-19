@@ -33,12 +33,12 @@ button:hover {
 }
 
 .sidebar {
-	width: 35%;
+	width: 40%;
 	background: rgba(0, 0, 0, 0.2);
 }
 
 .log {
-	width: 65%;
+	width: 60%;
 	overflow-y: scroll;
 }
 
@@ -153,18 +153,6 @@ input:focus {
 	font-size: 16px;
 }
 
-.message .userpic {
-	margin-right: 10px;
-	vertical-align: middle;
-}
-
-.message.own {
-	text-align: right;
-}
-
-.message.own .userpic {
-	margin: 0 0 0 10px;
-}
 
 .history form {
 	margin-top: 60px;
@@ -173,4 +161,37 @@ input:focus {
 
 .history input {
 	width: 100%;
+}
+
+.message:after {
+	content: '';
+	display: table;
+	clear: both;
+}
+
+.message .userpic {
+	float: left;
+}
+
+.message .text {
+	padding-top: 7px;
+	margin-left: 53px;
+}
+
+.message .text p {
+	margin-top: 0;
+}
+
+.message.own .userpic {
+	float: right;
+}
+
+.message.own .text {
+	margin-left: 0;
+	margin-right: 53px;
+	text-align: right;
+}
+
+i.close {
+	margin-top: -2px;
 }
