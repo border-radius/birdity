@@ -1,11 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<title>UI бирдости</title>
-	<link rel="stylesheet" href="/birdity.css">
+  <meta charset="UTF-8">
+  <title>Интерфейс бирдости</title>
+  <link rel="stylesheet" href="/birdity.css">
 </head>
 <body>
-	
+  <div class="page">
+    <h2>Интерфейс бирдости</h2>
+    <p>Бирдость использует собственную библиотеку стилей для создания замечательных интерфейсов. В качестве препроцессора используется <a href="http://lesscss.org">LESS</a> (переменные, вложенные стили и другие восхитительные возможности).</p>
+
+    <h3>Формы</h3>
+
+    <p>Набор элементов скуден: только текстовое поле и кнопка. В конце концов, зачем кому-то может понадобиться что-то еще?</p>
+
+    <pre><code>&lt;input type="text" placeholder="Текстовое поле"&gt;
+&lt;button&gt;Кнопка&lt;/button&gt;</code></pre>
+
+    <input type="text" placeholder="Текстовое поле">
+    <button>Кнопка</button>
+
+    <p>Зато, кнопка может иметь состояние <code>.done</code></p>
+
+    <pre><code>&lt;button class="done"&gt;Готово!&lt;/button&gt;</code></pre>
+
+    <button class="done">Готово!</button>
+
+    <h3>Лэндинг</h3>
+    <p>Без посадочной страницы сегодня никуда, вот и мы туда же. Код лэндинга лаконичен и самочитаем: <code>.background</code> для фоновой картинки (или даже видео), <code>.body</code> для содержимого, которое можно отцентрировать через <code>.center</code>. И все это великолепие завернуто в <code>.landing</code>. Чума!</p>
+
+    <pre><code>&lt;div class="landing"&gt;
+  &lt;img src="http://i.imgur.com/XwwEFNy.jpg" class="background"&gt;
+  &lt;div class="body"&gt;
+    &lt;div class="center"&gt;
+      &lt;h1&gt;Привет!&lt;/h1&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+  </div>
+
+  <div class="landing">
+    <img src="http://i.imgur.com/XwwEFNy.jpg" class="background">
+    <div class="body">
+      <div class="center">
+        <h1>Привет!</h1>
+      </div>
+    </div>
+  </div>
+
+  <div class="page">
+    <h3>Чат</h3>
+    <p>Верстка окна чата очень проста: viewport по-вертикали делится на две области: 40% и 60%. Внутри меньшей располагается боковая панель, прилипая к правому краю области. Внутри большей области &dash; чата.</p>
+
+    <pre><code>&lt;div class="app"&gt;
+   &lt;div class="sidebar"&gt;
+     &lt;div class="content"&gt;
+       Боковая панель
+     &lt;/div&gt;
+   &lt;/div&gt;
+   &lt;div class="chat"&gt;
+     &lt;div class="content"&gt;
+       Чат
+     &lt;/div&gt;
+   &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+    <p>Добавьте контейнеру <code>.app</code> дополнительный класс <code>.fullscreen</code> чтобы размер чата совпадал с размером окна.</p>
+  </div>
+
+  <div class="app">
+     <div class="sidebar">
+       <div class="content">
+         Боковая панель
+       </div>
+     </div>
+     <div class="chat">
+       <div class="content">
+         Чат
+       </div>
+     </div>
+   </div> 
 </body>
 </html>

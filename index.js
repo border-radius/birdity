@@ -11,10 +11,10 @@ app.use(express.static('static'));
 app.get('/birdity.css', function (req, res) {
 	fs.readFile('./birdity.less', { encoding: 'utf8' }, function (e, css) {
 		if (e) return res.status(500).send(e);
-		
+
 		less.render(css, function (e, css) {
 			if (e) return res.status(500).send(e);
-			res.set('Content-type', 'text/css').send(css);
+			res.set('Content-type', 'text/css').send(css.css);
 		});
 	});
 });

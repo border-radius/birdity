@@ -1,0 +1,185 @@
+@background: #1B192D;
+@landingBackground: rgba(31, 9, 67, 0.9);
+@buttonHoverBackground: rgba(255, 255, 255, 0.1);
+@buttonActiveBackground: rgba(255, 255, 255, 0.2);
+@sidebarBackground: rgba(0, 0, 0, 0.2);
+
+@color: #ddd;
+@activeColor: #fff;
+@unactiveColor: #bbb;
+@codeColor: yellow;
+@buttonDone: yellow;
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,300&subset=latin,cyrillic);
+
+html, body {
+	height: 100%;
+}
+
+body {
+	margin: 0;
+	background: @background;
+}
+
+body, input, button {
+	font: 300 16px/1.4 Roboto, sans-serif;
+	color: @color;
+}
+
+h1, h2, h3, h4, h5 {
+	font-weight: 100;
+	color: @activeColor;
+}
+
+h1 {
+	font-size: 72px;
+}
+
+h2 {
+	font-size: 48px;
+}
+
+h3 {
+	font-size: 32px;
+}
+
+a {
+	color: @color;
+
+	&:hover {
+		color: @activeColor;
+	}
+}
+
+code {
+	font-size: 14px;
+	color: @codeColor;
+}
+
+input {
+	width: 200px;
+	background: none;
+	border: none;
+	border-bottom: 1px solid @unactiveColor;
+
+	&:focus {
+		outline: 0 none;
+		border-bottom-color: @activeColor;
+	}
+}
+
+button {
+	padding: 2px 12px;
+	background: none;
+	border: 1px solid @color;
+	border-radius: 6px;
+
+	&:hover {
+		background: @buttonHoverBackground;
+	}
+
+	&:active {
+		background: @buttonActiveBackground;
+	}
+
+	&:focus {
+		outline: 0 none;
+	}
+
+	&.done {
+		pointer-events: none;
+		border-color: @buttonDone;
+		color: @buttonDone;
+	}
+}
+
+.page {
+	margin: 0 auto;
+	padding: 25px;
+	max-width: 600px;
+}
+
+.landing {
+	height: 100%;
+	position: relative;
+	overflow: hidden;
+
+	.background {
+		width: auto;
+		height: auto;
+		min-width: 100%;
+		min-height: 100%;
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		z-index: 5;
+	}
+
+	.body {
+		width: 100%;
+		height: 100%;
+		background: @landingBackground;
+		display: table;
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 10;
+
+		.center {
+			width: 100%;
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+		}
+	}
+}
+
+.app {
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+
+	&.fullscreen {
+		height: 100%;
+
+		.chat {
+			height: 100%;
+
+			.content {
+				position: absolute;
+				bottom: 0;
+			}
+		}
+	}
+
+	.sidebar {
+		width: 40%;
+		float: left;
+		background: @sidebarBackground;
+
+		.content {
+			margin-right: -20px;
+			width: 400px;
+			float: right;
+			overflow-y: scroll;
+		}
+	}
+
+	.chat {
+		width: 60%;
+		float: left;
+		background: @background;
+		position: relative;
+		overflow-y: scroll;
+
+		.content {
+			width: 550px;
+		}
+	}
+
+	.content {
+		padding: 25px;
+	}
+}
