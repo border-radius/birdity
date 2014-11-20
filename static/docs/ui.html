@@ -50,8 +50,8 @@
   </div>
 
   <div class="page">
-    <h3>Чат</h3>
-    <p>Верстка окна чата очень проста: viewport по-вертикали делится на две области: 40% и 60%. Внутри меньшей располагается боковая панель, прилипая к правому краю области. Внутри большей области &dash; чата.</p>
+    <h3>Окно</h3>
+    <p>Верстка окна очень проста: viewport по-вертикали делится на две области: 40% и 60%. Внутри меньшей располагается боковая панель, прилипая к правому краю области. Внутри большей области &dash; чат.</p>
 
     <pre><code>&lt;div class="app"&gt;
    &lt;div class="sidebar"&gt;
@@ -80,6 +80,87 @@
          Чат
        </div>
      </div>
-   </div> 
+   </div>
+
+   <div class="page">
+     <h3>Карточка</h3>
+     <p>Наверху боковой панели всегда находится карточка пользователя. В настоящий момент ее функционал минимален, но дальше всякое может произойти.</p>
+
+     <pre><code>&lt;div class="card"&gt;
+  &lt;img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic"&gt;
+  &lt;a href="" class="username"&gt;безумный пользователь&lt;/a&gt;
+  &lt;button&gt;Выйти&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+
+     <div class="card">
+       <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+       <a href="" class="username">безумный пользователь</a>
+       <button>Выйти</button>
+     </div>
+
+     <h3>Таб</h3>
+     <p>Табы &dash; наше всё. Таб это ссылка на ленту, таб это пользователь в ростере, таб это чат в ростере. Табы вездесущи.</p>
+
+     <pre><code>&lt;div class="tab"&gt;
+  &lt;div class="user"&gt;
+    &lt;img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic"&gt;
+    безумный пользователь
+  &lt;/div&gt;
+  &lt;div class="new"&gt;
+    4
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+     <div class="demo-tab">
+       <div class="tab">
+         <div class="user">
+           <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+           безумный пользователь
+         </div>
+         <div class="new">
+           4
+         </div>
+       </div>
+     </div>
+
+
+     <p>В любой момент таб может оказаться активным &dash; <code>.current</code>. У активного таба счетчик непрочитанных сообщений заменяется на кнопку закрытия (кроме таба-ссылки).</p>
+
+     <div class="demo-tab">
+       <div class="tab current">
+         <div class="user">
+           <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+           безумный пользователь
+         </div>
+         <div class="close"></div>
+       </div>
+     </div>
+
+     <p>Таб может быть ссылкой на ленту или черный список, если вместо <code>.user</code> использовать <code>.link</code></p>
+
+     <div class="demo-tab">
+       <div class="tab">
+         <div class="link">
+           Бирдость
+         </div>
+         <div class="new">
+           154
+         </div>
+       </div>
+     </div>
+
+     <p>А еще может ссылаться на чат &dash; <code>.chat</code></p>
+
+     <div class="demo-tab">
+       <div class="tab">
+         <div class="chat">
+           Внезапно пришла в голову очевидная достаточно мысль. Jabber, по большей части, критикуют за
+         </div>
+         <div class="new">
+           1
+         </div>
+       </div>
+     </div>
+   </div>
 </body>
 </html>
