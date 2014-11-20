@@ -161,6 +161,112 @@
          </div>
        </div>
      </div>
+
+     <h3>Сообщения</h3>
+
+     <p>Верстка сообщений примитивна, за это её и любим. Последовательные сообщения от одного пользователя группируются в одно сообщение по абзацам.</p>
+
+     <pre><code>&lt;div class="message"&gt;
+  &lt;img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic"&gt;
+  &lt;div class="text"&gt;
+    &lt;p&gt;Почему я здесь?&lt;/p&gt;
+    &lt;p&gt;Что здесь происходит?&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+     <div class="message">
+       <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+       <div class="text">
+         <p>Почему я здесь?</p>
+         <p>Что здесь происходит?</p>
+       </div>
+     </div>
+
+     <p>Сообщения, отправленные от собственного имени, отображаются несколько иначе. Для этого контейнеру <code>.message</code> добавляют класс <code>.own</code></p>
+
+     <div class="message own">
+       <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+       <div class="text">
+         <p>Ничего, товарищ майор, мы просто гуляем</p>
+       </div>
+     </div>
+
+     <p>Сообщения так же могут содержать контейнер <code>.attaches</code>, содержащий прикрепленные к сообщению элементы. Например, другие сообщения.</p>
+
+     <pre><code>&lt;div class="message"&gt;
+  &lt;img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic"&gt;
+  &lt;div class="text"&gt;
+    &lt;p&gt;лень читать че ты там пишешь&lt;/p&gt;
+  &lt;/div&gt;
+  &lt;div class="attaches"&gt;
+    &lt;div class="message"&gt;
+      &lt;img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic"&gt;
+      &lt;div class="text"&gt;
+        &lt;p&gt;прив. как дела? как ностр?&lt;/p&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+
+     <div class="message">
+       <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+       <div class="text">
+         <p>лень читать че ты там пишешь</p>
+       </div>
+       <div class="attaches">
+         <div class="message">
+           <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+           <div class="text">
+             <p>прив. как дела? как ностр?</p>
+           </div>
+         </div>
+       </div>
+     </div>
+
+     <p>Или даже изображения и короткие видеозаписи!</p>
+
+     <div class="message">
+       <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+       <div class="text">
+         <p>можно прикреплять ВСЯКОЕ</p>
+       </div>
+       <div class="attaches">
+         <div class="media">
+           <img src="http://i.imgur.com/XwwEFNy.jpg" alt="">
+         </div>
+         <div class="media">
+          <video autoplay="autoplay" loop="loop" muted="muted" style="display: block;" poster="//thumbs.gfycat.com/AfraidTameHornedviper-poster.jpg">
+            <source src="//fat.gfycat.com/AfraidTameHornedviper.webm" type="video/webm">
+            <source src="//giant.gfycat.com/AfraidTameHornedviper.mp4" type="video/mp4">
+          </video>
+         </div>
+       </div>
+     </div>
+
+     <p>Цитировать сообщения с вложениями тоже можно.</p>
+
+     <div class="message">
+       <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+       <div class="text">
+         <p>все видели?</p>
+       </div>
+       <div class="attaches">
+         <div class="message">
+           <img src="http://i.imgur.com/9KIYE30.jpg" alt="" class="userpic">
+           <div class="text">
+            <p>вы посмотрите что вытворяют!</p>
+           </div>
+           <div class="attaches">
+             <div class="media">
+              <video autoplay="autoplay" loop="loop" muted="muted" style="display: block;" poster="//thumbs.gfycat.com/AfraidTameHornedviper-poster.jpg">
+                <source src="//fat.gfycat.com/AfraidTameHornedviper.webm" type="video/webm">
+                <source src="//giant.gfycat.com/AfraidTameHornedviper.mp4" type="video/mp4">
+              </video>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
    </div>
 </body>
 </html>
