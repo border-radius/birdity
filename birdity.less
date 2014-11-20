@@ -144,6 +144,15 @@ button {
 	&.fullscreen {
 		height: 100%;
 
+		.sidebar {
+			&, .content {
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				box-sizing: border-box;
+				height: 100%;
+			}
+		}
+
 		.chat {
 			height: 100%;
 
@@ -181,6 +190,10 @@ button {
 
 	.content {
 		padding: 25px;
+	}
+
+	.sidebar .content {
+		padding: 25px 0 25px 25px;
 	}
 }
 
@@ -245,7 +258,7 @@ button {
 		background: @background;
 	}
 
-	.user, .link, .chat, .new, .close{
+	.user, .link, .chatlink, .new, .close{
 		display: table-cell;
 		vertical-align: middle;
 	}
@@ -257,9 +270,13 @@ button {
 		}
 	}
 
-	.chat, .new {
-		font-size: 14px;
+	.chatlink, .new {
+		font-size: 13px;
 		line-height: 1.2;
+	}
+
+	.chatlink {
+		height: 38px;
 	}
 
 	.new, .close {
@@ -281,16 +298,16 @@ button {
 }
 
 .message {
-	margin: 25px 0;
-	padding: 0 0 0 50px;
+	margin: 1px 0;
+	padding: 10px 0 10px 65px;
 	position: relative;
 
 	&.own {
-		padding: 0 50px 0 0;
+		padding: 10px 65px 10px 0;
 
 		.userpic {
 			left: auto;
-			right: 0;
+			right: 10px;
 		}
 
 		.text {
@@ -302,7 +319,7 @@ button {
 
 	.userpic {
 		position: absolute;
-		left: 0;
+		left: 10px;
 	}
 
 	.text {
@@ -317,7 +334,7 @@ button {
 	.attaches {
 		.message {
 			margin: 0;
-			padding-left: 38px;			
+			padding-left: 48px;			
 
 			.userpic {
 				width: 28px;
@@ -325,7 +342,7 @@ button {
 			}
 
 			.text {
-				padding-top: 2px;
+				padding-top: 3px;
 				font-size: 14px;
 			}
 
