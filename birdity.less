@@ -4,11 +4,26 @@
 @buttonActiveBackground: rgba(255, 255, 255, 0.2);
 @sidebarBackground: rgba(0, 0, 0, 0.2);
 
+@buttonActiveBorder: #000;
+
 @color: #ddd;
 @activeColor: #fff;
 @unactiveColor: #bbb;
 @codeColor: yellow;
 @buttonDone: yellow;
+
+.box-shadow(@s) {
+	-webkit-box-shadow: @s;
+	box-shadow: @s;
+}
+
+.clearfix {
+	&:after {
+		content: '';
+		display: table;
+		clear: both;
+	};
+}
 
 @import url(http://fonts.googleapis.com/css?family=Roboto:100,300&subset=latin,cyrillic);
 
@@ -76,6 +91,7 @@ button {
 
 	&:hover {
 		background: @buttonHoverBackground;
+		.box-shadow(inset 0 0 0 1px @buttonActiveBorder);
 	}
 
 	&:active {
@@ -135,11 +151,7 @@ button {
 }
 
 .app {
-	&:after {
-		content: '';
-		display: table;
-		clear: both;
-	}
+	.clearfix;
 
 	&.fullscreen {
 		height: 100%;
@@ -155,16 +167,11 @@ button {
 
 		.chat {
 			height: 100%;
-
-			.content {
-				position: absolute;
-				bottom: 0;
-			}
 		}
 	}
 
 	.sidebar {
-		width: 40%;
+		width: 35%;
 		float: left;
 		background: @sidebarBackground;
 
@@ -177,14 +184,15 @@ button {
 	}
 
 	.chat {
-		width: 60%;
+		width: 65%;
 		float: left;
 		background: @background;
 		position: relative;
 		overflow-y: scroll;
 
 		.content {
-			width: 550px;
+			max-width: 650px;
+			padding: 35px;
 		}
 	}
 
@@ -298,7 +306,9 @@ button {
 }
 
 .message {
-	margin: 1px 0;
+	.clearfix;
+
+	margin: 15px 0;
 	padding: 10px 0 10px 65px;
 	position: relative;
 
@@ -314,6 +324,10 @@ button {
 			padding-right: 0;
 			padding-left: 150px;
 			text-align: right;
+		}
+
+		.join {
+			float: right;
 		}
 	}
 
@@ -332,6 +346,8 @@ button {
 	}
 
 	.attaches {
+		margin-bottom: 12px;
+
 		.message {
 			margin: 0;
 			padding-left: 48px;			
