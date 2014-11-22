@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<base href="/">
 	<title>бирдость</title>
 	<link rel="stylesheet" href="/birdity.css">
 </head>
@@ -10,7 +11,7 @@
 
 <div class="app fullscreen">
 	<div class="sidebar" ng-controller="sidebar" ng-include="'sidebar'"></div>
-	<div class="chat" ng-controller="chat" ng-include="'chat'"></div>
+	<div class="chat" ng-view></div>
 </div>
 
 <script type="text/ng-template" id="sidebar">
@@ -21,8 +22,8 @@
 			<button>Выйти</button>
 		</div>
 
-		<div class="tab" ng-repeat="tab in tabs" ng-click="setCurrent(tab)" ng-class="{
-			current: current.id == tab.id
+		<a class="tab" ng-repeat="tab in tabs track by tab.id" href="/mockup/{{tab.id}}" ng-class="{
+			current: tab.id == currentChat
 		}">
 			<div ng-class="{
 				link: tab.type == 'link',
@@ -32,9 +33,9 @@
 				<img ng-if="tab.type == 'user'" ng-src="{{tab.userpic}}" class="userpic"/>
 				{{tab.text}}
 			</div>
-			<div class="new" ng-if="current.id != tab.id">{{tab.unread}}</div>
-			<div class="close" ng-if="current.id == tab.id && tab.type != 'link'"></div>
-		</div>
+			<div class="new" ng-if="tab.id != currentChat">{{tab.unread}}</div>
+			<div class="close" ng-if="tab.id == currentChat && tab.type != 'link'" ng-click="close(tab)"></div>
+		</a>
 	</div>
 </script>
 
