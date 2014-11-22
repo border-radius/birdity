@@ -2,6 +2,7 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 var less = require('less');
+var browserify = require('browserify');
 
 var app = express();
 
@@ -16,6 +17,13 @@ app.get('/birdity.css', function (req, res) {
 			if (e) return res.status(500).send(e);
 			res.set('Content-type', 'text/css').send(css.css);
 		});
+	});
+});
+
+app.get('/birdity.js', function (req, res) {
+	browserify().add('./birdity.js').bundle(function (e, js) {
+		if (e) return res.status(500).send(e);
+		res.set('Content-type', 'text/javascript').send(js);
 	});
 });
 

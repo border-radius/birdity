@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="birdity">
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,237 +9,56 @@
 <body>
 
 <div class="app fullscreen">
-	<div class="sidebar">
-		<div class="content">
-			<div class="card">
-				<img src="https://pbs.twimg.com/profile_images/511145670066315265/s6INagny_400x400.jpeg" alt="" class="userpic">
-				<a href="" class="username">Куркумище</a>
-				<button>Выйти</button>
-			</div>
-			
-			<div class="tab current">
-				<div class="link">
-					Бирдость
-				</div>
-				<div class="new"></div>
-			</div>
-			<div class="tab">
-				<div class="link">
-					Черный список
-				</div>
-				<div class="new"></div>
-			</div>
-			<div class="tab">
-				<div class="user">
-					<img src="https://pbs.twimg.com/profile_images/3433388447/aaf19722ee9d58256e5e829db1515efe_bigger.jpeg" alt="" class="userpic">
-					tigrch
-				</div>
-				<div class="new">4</div>
-			</div>
-			<div class="tab">
-				<div class="chatlink">
-					Позвонили из военкомата явиться на последнюю сверку документов, скоро
-				</div>
-				<div class="new">2</div>
-			</div>
-			<div class="tab">
-				<div class="chatlink">
-					Верните 2012 год пидоры
-				</div>
-				<div class="new">7</div>
-			</div>
-			<div class="tab">
-				<div class="user">
-					<img src="http://cs14112.vk.me/c624528/v624528471/846e/vq4w6zYtm9g.jpg" alt="" class="userpic">
-					Velvet-Bird
-				</div>
-				<div class="new"></div>
-			</div>
-			<div class="tab">
-				<div class="user">
-					<img src="http://cs616326.vk.me/v616326553/213de/eRQoF38919M.jpg" alt="" class="userpic">
-					Смерть неизбежна
-				</div>
-				<div class="new"></div>
-			</div>
-			<div class="tab">
-				<div class="user">
-					<img src="https://bnw.im/u/anonymous/avatar/thumb" alt="" class="userpic">
-					slavik the best
-				</div>
-				<div class="new"></div>
-			</div>
-			<div class="tab">
-				<div class="chatlink">
-					Смотришь код, который написала твоя тян, и понимаешь, что тебя или не слушают, когда ты
-				</div>
-				<div class="new"></div>
-			</div>
-			<div class="tab">
-				<div class="chatlink">
-					Сегодня я понял, что я латентная пидораха. Такие дела.
-				</div>
-				<div class="new"></div>
-			</div>
-		</div>
-	</div>
-	<div class="chat">
-		<div class="content">
-			<div class="message">
-				<img src="https://bnw.im/u/anonymous/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>завидуйте лол. blackjack, 50/50 indica/sativa</p>
-				</div>
-				<div class="attaches">
-					<div class="media">
-						<img src="https://bnw-thumb.r.worldssl.net/thumb?img=http%3A%2F%2Fi.imgur.com%2FIjiKQ85.jpg" alt="">
-					</div>
-				</div>
-				<div class="join">
-					<button>6 участников, 20 сообщений</button>
-				</div>
-			</div>
-
-			<div class="message own">
-				<img src="https://pbs.twimg.com/profile_images/511145670066315265/s6INagny_normal.jpeg" alt="" class="userpic">
-				<div class="text">
-					<p>На самом деле я никогда не сливаюсь, я просто перехожу на новый уровень беседы, а ты ползёшь там по низам и не понимаешь моего уровня, и так всегда, поэтому тебе кажется, что ебанутый и нелогичный, а мне с тобой скучно, потому что я знаю твой следующий реплай. Спасибо за фидбек.</p>
-				</div>
-				<div class="join">
-					<button>9 участников, 18 сообщений</button>
-				</div>
-			</div>
-
-			<div class="message">
-				<img src="https://bnw.im/u/l29ah/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>ОДИН РАБОЧИЙ ХИНКПАД И ДВА ЗАПАСНЫХ</p>
-				</div>
-				<div class="join">
-					<button>3 участника, 8 сообщений</button>
-				</div>
-			</div>
-			<!--<div class="message">
-				<img src="https://bnw.im/u/anoos/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>Верните 2012 год пидоры</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/mugiseyebrows/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>бля сорь</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="http://i.imgur.com/nId1DAu.png?1" alt="" class="userpic">
-				<div class="text">
-					<p>не возвращайте это говно</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/anoos/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>обязательно возвращайте</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/polecat/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>чо там</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/plhk/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>не нужно</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/goren/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>нахуй тебе?</p>
-				</div>
-			</div>
-			<div class="message own">
-				<img src="https://pbs.twimg.com/profile_images/511145670066315265/s6INagny_normal.jpeg" alt="" class="userpic">
-				<div class="text">
-					<p>готово, проверяй</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/anoos/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>там было охуенно</p>
-				</div>
-				<div class="attaches">
-					<div class="message">
-						<img src="https://bnw.im/u/goren/avatar/thumb" alt="" class="userpic">
-						<div class="text">
-							<p>нахуй тебе?</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/anoos/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>не работает, попробуй еще раз</p>
-				</div>
-				<div class="attaches">
-					<div class="message">
-						<img src="https://pbs.twimg.com/profile_images/511145670066315265/s6INagny_normal.jpeg" alt="" class="userpic">
-						<div class="text">
-							<p>готово, проверяй</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/goren/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>Чем? Крым был ненаш?</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/anoos/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>мне там было охуенно, похуй на крым</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/goren/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>Всё-таки что именно?</p>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/polecat/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>пруф или в 11м //запутина штоле, пидр?</p>
-				</div>
-				<div class="attaches">
-					<div class="message">
-						<img src="https://bnw.im/u/anoos/avatar/thumb" alt="" class="userpic">
-						<div class="text">
-							<p>там было охуенно</p>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="message">
-				<img src="https://bnw.im/u/anoos/avatar/thumb" alt="" class="userpic">
-				<div class="text">
-					<p>z</p>
-					<p>в 12 году я был молодым, а теперь нет</p>
-					<p>люблю путина</p>
-				</div>
-			</div>-->
-		</div>
-	</div>
+	<div class="sidebar" ng-controller="sidebar" ng-include="'sidebar'"></div>
+	<div class="chat" ng-controller="chat" ng-include="'chat'"></div>
 </div>
 
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-<script src="scripts.js"></script>
+<script type="text/ng-template" id="sidebar">
+	<div class="content">
+		<div class="card">
+			<img ng-src="{{user.userpic}}" class="userpic">
+			<a href="" class="username">{{user.name}}</a>
+			<button>Выйти</button>
+		</div>
+
+		<div class="tab" ng-repeat="tab in tabs" ng-click="setCurrent(tab)" ng-class="{
+			current: current.id == tab.id
+		}">
+			<div ng-class="{
+				link: tab.type == 'link',
+				user: tab.type == 'user',
+				chatlink: tab.type == 'chat'
+			}">
+				<img ng-if="tab.type == 'user'" ng-src="{{tab.userpic}}" class="userpic"/>
+				{{tab.text}}
+			</div>
+			<div class="new" ng-if="current.id != tab.id">{{tab.unread}}</div>
+			<div class="close" ng-if="current.id == tab.id && tab.type != 'link'"></div>
+		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="chat">
+	<div class="content">
+		<div class="message" ng-repeat="message in chat" ng-class="{
+			own: message.own
+		}">
+			<img ng-src="{{(message.own) ? user.userpic : message.userpic}}" class="userpic">
+			<div class="text">
+				<p>{{message.text}}</p>
+			</div>
+			<div class="attaches" ng-if="message.attaches">
+				<div class="media" ng-repeat="attach in message.attaches">
+					<img ng-src="{{attach.src}}">
+				</div>
+			</div>
+			<div class="join" ng-if="message.users">
+				<button>{{message.users}} участников, {{message.messages}} сообщений</button>
+			</div>
+		</div>
+	</div>
+</script>
+
+<script src="/birdity.js"></script>
 </body>
 </html>
