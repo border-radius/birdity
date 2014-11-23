@@ -6,6 +6,8 @@ var browserify = require('browserify');
 
 var app = express();
 
+app.use(require('./db'));
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('static'));
 
@@ -95,7 +97,17 @@ app.get('/api/chat', function (req, res) {
 });
 
 app.get('/api/chat/:chat', function (req, res) {
-	res.json([
+
+	req.models.chat(req.params.chat, 1, function (e, messages) {
+		if (e) return res.status(500).send(e);
+		res.json(messages);
+	});
+	/*res.json([
+		{
+			text: 'chat #' + req.params.chat
+		}
+	]);*/
+	/*res.json([
 		{
 			userpic: 'https://bnw.im/u/anonymous/avatar/thumb',
 			text: 'завидуйте лол. blackjack, 50/50 indica/sativa',
@@ -120,7 +132,7 @@ app.get('/api/chat/:chat', function (req, res) {
 			users: 3,
 			messages: 8
 		}
-	]);
+	]);*/
 });
 
 app.listen(8070);

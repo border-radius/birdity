@@ -21,8 +21,6 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 }]);
 
 app.factory('api', ['$resource', function ($resource) {
-	var onTabChange;
-
 	return {
 		chat: $resource('/api/chat/:id/', {}, {
 			get: {
@@ -32,9 +30,10 @@ app.factory('api', ['$resource', function ($resource) {
 	};
 }]);
 
-app.controller('sidebar', ['$scope', '$rootScope', '$routeParams', 'api', function ($scope, $rootScope, $routeParams, api) {
+app.controller('sidebar', ['$scope', '$rootScope', 'api', function ($scope, $rootScope, api) {
 
 	$rootScope.user = {
+		id: 1,
 		name: 'безумный пользователь',
 		userpic: 'http://i.imgur.com/9KIYE30.jpg'
 	};

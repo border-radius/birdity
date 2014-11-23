@@ -42,9 +42,9 @@
 <script type="text/ng-template" id="chat">
 	<div class="content">
 		<div class="message" ng-repeat="message in chat" ng-class="{
-			own: message.own
+			own: message.userid == user.id
 		}">
-			<img ng-src="{{(message.own) ? user.userpic : message.userpic}}" class="userpic">
+			<img ng-src="/userpics/{{message.userpic}}.jpg" class="userpic">
 			<div class="text">
 				<p>{{message.text}}</p>
 			</div>
