@@ -42,9 +42,14 @@ app.controller('sidebar', ['$scope', '$rootScope', 'api', function ($scope, $roo
 }]);
 
 
-app.controller('chat', ['$scope', '$rootScope', '$routeParams', 'api', function ($scope, $rootScope, $routeParams, api) {
+app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', 'api', function ($scope, $rootScope, $routeParams, $sce, api) {
 
 	$rootScope.currentChat = $routeParams.chat || 1;
+
+	//workaround https://github.com/angular/angular.js/issues/1352
+	$scope.trust = function (src) {
+		return $sce.trustAsResourceUrl(src);
+	};
 
 	$scope.chat = api.chat.get({
 		id: $rootScope.currentChat

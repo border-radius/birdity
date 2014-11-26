@@ -50,7 +50,11 @@
 			</div>
 			<div class="attaches" ng-if="message.attaches">
 				<div class="media" ng-repeat="attach in message.attaches">
-					<img ng-src="{{attach.src}}">
+					<img ng-if="attach.src" ng-src="{{attach.src}}">
+					<video ng-if="attach.poster" poster="{{attach.poster}}" autoplay="autoplay" loop="loop" muted="muted">
+						<source ng-if="attach.webm" type="video/webm" ng-src="{{trust(attach.webm)}}"/>
+						<source ng-if="attach.mp4" type="video/mp4" ng-src="{{trust(attach.mp4)}}"/>
+					</video>
 				</div>
 			</div>
 			<div class="join" ng-if="message.users">
