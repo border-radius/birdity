@@ -11,6 +11,7 @@
 @unactiveColor: #bbb;
 @codeColor: yellow;
 @buttonDone: yellow;
+@statusColor: rgba(255, 255, 255, 0.25); //rgba(126, 104, 147, 1);
 
 .clearfix {
 	&:after {
@@ -86,11 +87,12 @@ input {
 	}
 }
 
-button {
+button, .button {
 	padding: 2px 12px;
 	background: none;
 	border: 1px solid @color;
 	border-radius: 6px;
+	text-decoration: none;
 
 	&:hover {
 		background: @buttonHoverBackground;
@@ -233,7 +235,7 @@ button {
 		top: 10px;
 	}
 
-	button {
+	button, .button {
 		padding: 1px 5px 3px;
 		font-size: 14px;
 		position: absolute;
@@ -397,6 +399,27 @@ button {
 				max-width: 100%;
 				max-height: 150px;
 			}
+		}
+	}
+
+	&.status {
+		padding-left: 0;
+		text-align: center;
+		
+		.userpic {
+			margin-right: 5px;
+			width: 26px;
+			height: 26px;
+			position: relative;
+			top: auto;
+			left: auto;
+			vertical-align: middle;
+			opacity: 0.5;
+		}
+
+		.status {
+			color: @statusColor;
+			display: inline-block;
 		}
 	}
 }

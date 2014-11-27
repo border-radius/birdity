@@ -20,17 +20,11 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 	$locationProvider.html5Mode(true);
 }]);
 
-app.factory('api', ['$resource', function ($resource) {
-	return {
-		chat: $resource('/api/chat/:id/', {}, {
-			get: {
-				isArray: true
-			}
-		})
-	};
+app.factory('Chat', ['$resource', function ($resource) {
+	return $resource('/api/chat/:id/');
 }]);
 
-app.controller('sidebar', ['$scope', '$rootScope', 'api', function ($scope, $rootScope, api) {
+app.controller('sidebar', ['$scope', '$rootScope', 'Chat', function ($scope, $rootScope, Chat) {
 
 	$rootScope.user = {
 		id: 1,
@@ -38,11 +32,22 @@ app.controller('sidebar', ['$scope', '$rootScope', 'api', function ($scope, $roo
 		userpic: 'http://i.imgur.com/9KIYE30.jpg'
 	};
 
-	$scope.tabs = api.chat.query();
+	$rootScope.changeTab = (function () {
+		return function (tab) {
+			if (!_.find($scope.tabs, function (_tab) {
+				return _tab.id == tab.id;
+			})) {
+				$scope.tabs.push(tab);
+			}
+		};
+	})();
+
+	$scope.tabs = Chat.query();
 }]);
 
 
-app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', 'api', function ($scope, $rootScope, $routeParams, $sce, api) {
+app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$location', 'Chat',
+	function ($scope, $rootScope, $routeParams, $sce, $location, Chat) {
 
 	$rootScope.currentChat = $routeParams.chat || 1;
 
@@ -51,7 +56,20 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', 'api', f
 		return $sce.trustAsResourceUrl(src);
 	};
 
-	$scope.chat = api.chat.get({
+	$scope.chat = Chat.query({
 		id: $rootScope.currentChat
 	});
+
+	$scope.join = function (message) {
+		$rootScope.changeTab({
+			id: message.chatid,
+			type: 'chat',
+			text: message.text.substr(0, 70),
+			bump: new Date().toISOString()
+		});
+
+		$rootScope.currentChat = message.chatid;
+
+		$location.url('/mockup/' + message.chatid);
+	};
 }]);

@@ -22,7 +22,7 @@
 			<button>Выйти</button>
 		</div>
 
-		<a class="tab" ng-repeat="tab in tabs track by tab.id" href="/mockup/{{tab.id}}" ng-class="{
+		<a class="tab" ng-repeat="tab in tabs|orderBy:'bump':true track by tab.id" href="/mockup/{{tab.id}}" ng-class="{
 			current: tab.id == currentChat
 		}">
 			<div ng-class="{
@@ -42,11 +42,19 @@
 <script type="text/ng-template" id="chat">
 	<div class="content">
 		<div class="message" ng-repeat="message in chat" ng-class="{
-			own: message.userid == user.id
+			own: message.userid == user.id && message.type == 'text',
+			status: message.type == 'status'
 		}">
-			<img ng-src="/userpics/{{message.userpic}}.jpg" class="userpic">
-			<div class="text">
+			<img ng-src="{{message.userpic}}" class="userpic" alt="{{message.username}}" title="{{message.username}}">
+			<div class="text" ng-if="message.type == 'text'">
 				<p>{{message.text}}</p>
+			</div>
+			<div class="status" ng-if="message.type == 'status'">
+				{{message.username}}
+				<span ng-if="message.status == 1">подписался</span>
+				<span ng-if="message.status == 2">отписался</span>
+				<span ng-if="message.status == 3">вас заблокировал</span>
+				<span ng-if="message.status == 4">вас разблокировал</span>
 			</div>
 			<div class="attaches" ng-if="message.attaches">
 				<div class="media" ng-repeat="attach in message.attaches">
@@ -57,8 +65,8 @@
 					</video>
 				</div>
 			</div>
-			<div class="join" ng-if="message.users">
-				<button>{{message.users}} участников, {{message.messages}} сообщений</button>
+			<div class="join" ng-if="message.newChat">
+				<button ng-click="join(message)">{{message.newChat}}</button>
 			</div>
 		</div>
 	</div>
