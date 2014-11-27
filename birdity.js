@@ -28,7 +28,8 @@ app.factory('Users', ['$resource', function ($resource) {
 	return $resource('/api/user/:id/');
 }]);
 
-app.controller('sidebar', ['$scope', '$rootScope', 'Chats', function ($scope, $rootScope, Chats) {
+app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location',
+	function ($scope, $rootScope, Chats, $location) {
 
 	$rootScope.user = {
 		id: 1,
@@ -47,11 +48,29 @@ app.controller('sidebar', ['$scope', '$rootScope', 'Chats', function ($scope, $r
 	})();
 
 	$scope.tabs = Chats.query();
+
+	$scope.close = function (tab) {
+		var question = (tab.type == 'user')
+			? 'Заблокировать пользователя ' + tab.text + '?'
+			: 'Отписаться от чата?';
+
+		if (confirm(question)) {
+			Chats.remove({
+				id: tab.id
+			});
+
+			$scope.tabs = $scope.tabs.filter(function (_tab) {
+				return tab.id != _tab.id;
+			});
+
+			$location.url('/mockup/');
+		}
+	};
 }]);
 
 
-app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$location', 'Chats', 'Users',
-	function ($scope, $rootScope, $routeParams, $sce, $location, Chats, Users) {
+app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$location', 'Chats',
+	function ($scope, $rootScope, $routeParams, $sce, $location, Chats) {
 
 	$rootScope.currentChat = $routeParams.chat || 1;
 
@@ -79,21 +98,16 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$locati
 
 	$scope.userChat = function (message) {
 		if (message.userid == $rootScope.user.id) return;
-		
-		var chat = Users.get({
-			id: message.userid
-		}, function () {
-			$rootScope.currentChat = chat.chatid;
 
-			$rootScope.changeTab({
-				id: chat.chatid,
-				type: 'user',
-				userpic: message.userpic,
-				text: message.username,
-				bump: new Date().toISOString()
-			});
-
-			$location.url('/mockup/' + chat.chatid);
+		$rootScope.changeTab({
+			id: message.userchat,
+			type: 'chat',
+			text: message.text.substr(0, 70),
+			bump: new Date().toISOString()
 		});
+
+		$rootScope.currentChat = message.userchat;
+
+		$location.url('/mockup/' + message.userchat);
 	}
 }]);

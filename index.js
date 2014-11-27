@@ -48,11 +48,16 @@ app.get('/api/chat/:chat', function (req, res) {
 	res.json(chat);
 });
 
-app.get('/api/user/:user', function (req, res) {
-	var chat = demo.getPrivateChat(1, req.params.user);
-	res.json({
-		chatid: chat
-	});
+app.delete('/api/chat/:chat', function (req, res) {
+	if (demo.leaveChat(1, req.params.chat)) {
+		res.send();
+	} else {
+		res.status(500).send();
+	}
+});
+
+app.get('/test', function (req, res) {
+	console.log(demo.debug.Subscribes);
 });
 
 app.listen(8070);

@@ -123,7 +123,7 @@ function joinChat (user, chat) {
 	return chat;
 }
 
-function leaveChat (user, chat) {
+function leaveChat (user, chat, isUser) {
 	var subscribe = _.find(Subscribes, function (subscribe) {
 		return subscribe.userid == user && subscribe.chatid == chat;
 	});
@@ -134,9 +134,11 @@ function leaveChat (user, chat) {
 		return thatChat.id == chat;
 	});
 
-	if (thatChat.type != 'chat') return;
+	if (thatChat.type == 'link') return;
 
 	var id = Messages.length + 1;
+
+	var status = (isUser) ? 3 : 2;
 
 	Messages.push({
 		id: id,
@@ -144,7 +146,7 @@ function leaveChat (user, chat) {
 		chatid: chat,
 		date: new Date(),
 		type: 'status',
-		status: 2
+		status: status
 	});
 
 	Subscribes = Subscribes.filter(function (subscribe) {
@@ -169,7 +171,7 @@ function getPrivateChat (from, to) {
 		return subscribe.userid == to && roster.indexOf(subscribe.chatid) > -1;
 	});
 
-	return subscribe.chatid;
+	if (subscribe) return subscribe.chatid;
 }
 
 function createChat (user, text) {
@@ -247,17 +249,25 @@ function getChats (user) {
 function getChat (user, chat) {
 	// 1 == birdity
 
+	var userid = user;
+
 	if (chat == 1) {
 		var chats = Chats.filter(function (chat) {
 			return chat.type == 'chat';
 		});
 
-		return chats.map(function (chat) {
+		chats = chats.map(function (chat) {
 			var message = _.find(Messages, function (message) {
 				return message.chatid == chat.id;
 			});
 
 			message = _.clone(message);
+
+			if (userid != message.userid) {
+				var userchat = getPrivateChat(userid, message.userid);
+				if (!userchat) return;
+				message.userchat = userchat;
+			}
 
 			var user = _.find(Users, function (user) {
 				return user.id == message.userid;
@@ -288,6 +298,8 @@ function getChat (user, chat) {
 
 			return message;
 		});
+
+		return _.compact(chats);
 	}
 
 	// test if user can read this chat
@@ -359,7 +371,10 @@ module.exports = {
 	getPrivateChat: getPrivateChat,
 	createChat: createChat,
 	getChat: getChat,
-	getChats: getChats
+	getChats: getChats,
+	debug: {
+		Subscribes: Subscribes
+	}
 };
 
 /*
