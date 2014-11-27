@@ -20,11 +20,15 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 	$locationProvider.html5Mode(true);
 }]);
 
-app.factory('Chat', ['$resource', function ($resource) {
+app.factory('Chats', ['$resource', function ($resource) {
 	return $resource('/api/chat/:id/');
 }]);
 
-app.controller('sidebar', ['$scope', '$rootScope', 'Chat', function ($scope, $rootScope, Chat) {
+app.factory('Users', ['$resource', function ($resource) {
+	return $resource('/api/user/:id/');
+}]);
+
+app.controller('sidebar', ['$scope', '$rootScope', 'Chats', function ($scope, $rootScope, Chats) {
 
 	$rootScope.user = {
 		id: 1,
@@ -42,12 +46,12 @@ app.controller('sidebar', ['$scope', '$rootScope', 'Chat', function ($scope, $ro
 		};
 	})();
 
-	$scope.tabs = Chat.query();
+	$scope.tabs = Chats.query();
 }]);
 
 
-app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$location', 'Chat',
-	function ($scope, $rootScope, $routeParams, $sce, $location, Chat) {
+app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$location', 'Chats', 'Users',
+	function ($scope, $rootScope, $routeParams, $sce, $location, Chats, Users) {
 
 	$rootScope.currentChat = $routeParams.chat || 1;
 
@@ -56,7 +60,7 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$locati
 		return $sce.trustAsResourceUrl(src);
 	};
 
-	$scope.chat = Chat.query({
+	$scope.chat = Chats.query({
 		id: $rootScope.currentChat
 	});
 
@@ -72,4 +76,24 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$locati
 
 		$location.url('/mockup/' + message.chatid);
 	};
+
+	$scope.userChat = function (message) {
+		if (message.userid == $rootScope.user.id) return;
+		
+		var chat = Users.get({
+			id: message.userid
+		}, function () {
+			$rootScope.currentChat = chat.chatid;
+
+			$rootScope.changeTab({
+				id: chat.chatid,
+				type: 'user',
+				userpic: message.userpic,
+				text: message.username,
+				bump: new Date().toISOString()
+			});
+
+			$location.url('/mockup/' + chat.chatid);
+		});
+	}
 }]);

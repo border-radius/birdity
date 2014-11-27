@@ -11,7 +11,9 @@
 
 <div class="app fullscreen">
 	<div class="sidebar" ng-controller="sidebar" ng-include="'sidebar'"></div>
-	<div class="chat" ng-view></div>
+	<div class="chat">
+		<div class="content" ng-view></div>
+	</div>
 </div>
 
 <script type="text/ng-template" id="sidebar">
@@ -40,34 +42,32 @@
 </script>
 
 <script type="text/ng-template" id="chat">
-	<div class="content">
-		<div class="message" ng-repeat="message in chat" ng-class="{
-			own: message.userid == user.id && message.type == 'text',
-			status: message.type == 'status'
-		}">
-			<img ng-src="{{message.userpic}}" class="userpic" alt="{{message.username}}" title="{{message.username}}">
-			<div class="text" ng-if="message.type == 'text'">
-				<p>{{message.text}}</p>
+	<div class="message" ng-repeat="message in chat" ng-class="{
+		own: message.userid == user.id && message.type == 'text',
+		status: message.type == 'status'
+	}">
+		<img ng-src="{{message.userpic}}" class="userpic" alt="{{message.username}}" title="{{message.username}}" ng-click="userChat(message)">
+		<div class="text" ng-if="message.type == 'text'">
+			<p>{{message.text}}</p>
+		</div>
+		<div class="status" ng-if="message.type == 'status'" ng-click="userChat(message)">
+			{{message.username}}
+			<span ng-if="message.status == 1">подписался</span>
+			<span ng-if="message.status == 2">отписался</span>
+			<span ng-if="message.status == 3">вас заблокировал</span>
+			<span ng-if="message.status == 4">вас разблокировал</span>
+		</div>
+		<div class="attaches" ng-if="message.attaches">
+			<div class="media" ng-repeat="attach in message.attaches">
+				<img ng-if="attach.src" ng-src="{{attach.src}}">
+				<video ng-if="attach.poster" poster="{{attach.poster}}" autoplay="autoplay" loop="loop" muted="muted">
+					<source ng-if="attach.webm" type="video/webm" ng-src="{{trust(attach.webm)}}"/>
+					<source ng-if="attach.mp4" type="video/mp4" ng-src="{{trust(attach.mp4)}}"/>
+				</video>
 			</div>
-			<div class="status" ng-if="message.type == 'status'">
-				{{message.username}}
-				<span ng-if="message.status == 1">подписался</span>
-				<span ng-if="message.status == 2">отписался</span>
-				<span ng-if="message.status == 3">вас заблокировал</span>
-				<span ng-if="message.status == 4">вас разблокировал</span>
-			</div>
-			<div class="attaches" ng-if="message.attaches">
-				<div class="media" ng-repeat="attach in message.attaches">
-					<img ng-if="attach.src" ng-src="{{attach.src}}">
-					<video ng-if="attach.poster" poster="{{attach.poster}}" autoplay="autoplay" loop="loop" muted="muted">
-						<source ng-if="attach.webm" type="video/webm" ng-src="{{trust(attach.webm)}}"/>
-						<source ng-if="attach.mp4" type="video/mp4" ng-src="{{trust(attach.mp4)}}"/>
-					</video>
-				</div>
-			</div>
-			<div class="join" ng-if="message.newChat">
-				<button ng-click="join(message)">{{message.newChat}}</button>
-			</div>
+		</div>
+		<div class="join" ng-if="message.newChat">
+			<button ng-click="join(message)">{{message.newChat}}</button>
 		</div>
 	</div>
 </script>

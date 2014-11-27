@@ -154,7 +154,7 @@ function leaveChat (user, chat) {
 	return true;
 }
 
-function sendPrivateMessage (from, to, text) {
+function getPrivateChat (from, to) {
 	var roster = Subscribes.filter(function (subscribe) {
 		var chat = _.find(Chats, function (chat) {
 			return chat.id == subscribe.chatid;
@@ -169,7 +169,7 @@ function sendPrivateMessage (from, to, text) {
 		return subscribe.userid == to && roster.indexOf(subscribe.chatid) > -1;
 	});
 
-	return sendMessage(from, subscribe.chatid, text);;
+	return subscribe.chatid;
 }
 
 function createChat (user, text) {
@@ -338,7 +338,8 @@ var me_2 = createChat(me, 'даже и без знания аппербаунд�
 var goren_1 = createChat(goren, 'Пуууууук.');
 
 setTimeout(function () {
-	sendPrivateMessage(goren, me, 'Ничего не пойму');
+	var chat = getPrivateChat(goren, me);
+	sendMessage(goren, chat, 'Ничего не пойму');
 }, 100);
 setTimeout(function () {
 	joinChat(me, goren_1);
@@ -355,7 +356,7 @@ module.exports = {
 	sendMessage: sendMessage,
 	joinChat: joinChat,
 	leaveChat: leaveChat,
-	sendPrivateMessage: sendPrivateMessage,
+	getPrivateChat: getPrivateChat,
 	createChat: createChat,
 	getChat: getChat,
 	getChats: getChats

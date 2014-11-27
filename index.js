@@ -48,5 +48,12 @@ app.get('/api/chat/:chat', function (req, res) {
 	res.json(chat);
 });
 
+app.get('/api/user/:user', function (req, res) {
+	var chat = demo.getPrivateChat(1, req.params.user);
+	res.json({
+		chatid: chat
+	});
+});
+
 app.listen(8070);
 console.log('Launched at ' + new Date());
