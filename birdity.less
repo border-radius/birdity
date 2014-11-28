@@ -32,7 +32,7 @@ body {
 	background: @background;
 }
 
-body, input, button {
+body, input, button, textarea {
 	font: 300 16px/1.4 Roboto, sans-serif;
 	color: @color;
 }
@@ -75,7 +75,7 @@ code {
 	color: @codeColor;
 }
 
-input {
+input, textarea {
 	width: 200px;
 	background: none;
 	border: none;
@@ -85,6 +85,10 @@ input {
 		outline: 0 none;
 		border-bottom-color: @activeColor;
 	}
+}
+textarea {
+	width: 100%;
+	resize: none;
 }
 
 button, .button {
@@ -196,7 +200,7 @@ button, .button {
 
 		.content {
 			max-width: 650px;
-			padding: 35px;
+			padding: 35px 35px 135px;
 		}
 	}
 
@@ -320,6 +324,12 @@ button, .button {
 	margin: 15px 0;
 	padding: 10px 0 10px 65px;
 	position: relative;
+	border: 1px dashed transparent;
+	border-radius: 8px;
+
+	&.quoted {
+		border-color: @statusColor;
+	}
 
 	&.own {
 		padding: 10px 65px 10px 0;
@@ -424,6 +434,33 @@ button, .button {
 		.status {
 			color: @statusColor;
 			display: inline-block;
+		}
+	}
+}
+
+.write {
+	margin-left: 35px;
+	padding-top: 15px;
+	width: 650px;
+	position: fixed;
+	bottom: 0;
+	background: @background;
+
+	textarea {
+		padding-bottom: 2px;
+		height: 16px * 1.4;
+	}
+
+	.controls {
+		margin: 3px 0 5px;
+		text-align: right;
+
+		button {
+			font-size: 14px;
+		}
+
+		span {
+			float: left;
 		}
 	}
 }

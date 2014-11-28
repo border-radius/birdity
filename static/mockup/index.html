@@ -13,6 +13,7 @@
 	<div class="sidebar" ng-controller="sidebar" ng-include="'sidebar'"></div>
 	<div class="chat">
 		<div class="content" ng-view></div>
+		<div class="write" ng-controller="write" ng-include="'write'"></div>
 	</div>
 </div>
 
@@ -44,8 +45,9 @@
 <script type="text/ng-template" id="chat">
 	<div class="message" ng-repeat="message in chat" ng-class="{
 		own: message.userid == user.id && message.type == 'text',
-		status: message.type == 'status'
-	}">
+		status: message.type == 'status',
+		quoted: quotes.indexOf(message.id) > -1
+	}" ng-click="quote(message)">
 		<img ng-src="{{message.userpic}}" class="userpic" alt="{{message.username}}" title="{{message.username}}" ng-click="userChat(message)">
 		<div class="text" ng-if="message.type == 'text'">
 			<p>{{message.text}}</p>
@@ -69,6 +71,14 @@
 		<div class="join" ng-if="message.newChat">
 			<button ng-click="join(message)">{{message.newChat}}</button>
 		</div>
+	</div>
+</script>
+
+<script type="text/ng-template" id="write">
+	<textarea placeholder="Ответить" ng-model="text"></textarea>
+	<div class="controls">
+		<span ng-if="quotes.length">цитируется: {{quotes.length}}</span>
+		<button ng-click="send(text)">Отправить</button>
 	</div>
 </script>
 

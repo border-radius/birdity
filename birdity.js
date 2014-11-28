@@ -37,6 +37,8 @@ app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location', '$timeo
 		userpic: 'http://i.imgur.com/9KIYE30.jpg'
 	};
 
+	$rootScope.quotes = [];
+
 	$rootScope.changeTab = (function () {
 		return function (tab) {
 			if (!_.find($scope.tabs, function (_tab) {
@@ -64,7 +66,7 @@ app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location', '$timeo
 			});
 
 			//workaround http://stackoverflow.com/questions/23867590/angularjs-location-url-doesnt-work-location-href-works
-			//(location not changing if $scope.$apply() already running)
+			//(location not changing if $scope.$apply() is already running)
 			$timeout(function () {
 				$location.url('/mockup/');
 			});
@@ -105,13 +107,28 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$locati
 
 		$rootScope.changeTab({
 			id: message.userchat,
-			type: 'chat',
-			text: message.text.substr(0, 70),
+			type: 'user',
+			text: message.username,
 			bump: new Date().toISOString()
 		});
 
 		$rootScope.currentChat = message.userchat;
 
 		$location.url('/mockup/' + message.userchat);
-	}
+	};
+
+	$scope.quote = function (message) {
+		console.log(window.getSelection());
+		if (!window.getSelection().isCollapsed) return; //don't quote if text selected
+
+		if ($rootScope.quotes.indexOf(message.id) > -1) {
+			$rootScope.quotes = _.pull($rootScope.quotes, message.id);
+		} else {
+			$rootScope.quotes.push(message.id);
+		}
+	};
+}]);
+
+app.controller('write', ['$scope', function ($scope) {
+
 }]);

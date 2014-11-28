@@ -1,4 +1,5 @@
 var _ = require('lodash');
+var stringForms = require('./lib/stringforms');
 
 var Users = [];
 var Chats = [
@@ -287,13 +288,9 @@ function getChat (user, chat) {
 			}, 0);
 
 			message.newChat = [
-				countUsers,
-				([2, 3, 4].indexOf((countUsers+'').substr(-1, 1)|0) > -1 && [12, 13, 14].indexOf(countUsers) == -1) ? 'участника' :
-				((countUsers+'').substr(-1, 1) == '1' && countUsers != 11) ? 'участник' : 'участников',
-				',',
-				countMessages,
-				([2, 3, 4].indexOf((countMessages+'').substr(-1, 1)|0) > -1 && [12, 13, 14].indexOf(countMessages) == -1) ? 'сообщения' :
-				((countMessages+'').substr(-1, 1) == '1' && countMessages != 11) ? 'сообщение' : 'сообщений',
+				stringForms(countUsers, ['участник', 'участника', 'участников']),
+				', ',
+				stringForms(countMessages, ['сообщение', 'сообщения', 'сообщений'])
 			].join(' ');
 
 			return message;
@@ -357,10 +354,11 @@ setTimeout(function () {
 	joinChat(me, goren_1);
 }, 100);
 setTimeout(function () {
-	sendMessage(me, goren_1, 'Хуй соси губой тряси, хе-хе.');
+	sendMessage(me, goren_1, 'хуй соси губой тряси');
 }, 100);
 setTimeout(function () {
 	sendMessage(goren, goren_1, 'Лан.');
+	leaveChat(goren, goren_1);
 }, 100);
 
 module.exports = {
