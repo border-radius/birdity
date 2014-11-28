@@ -28,8 +28,8 @@ app.factory('Users', ['$resource', function ($resource) {
 	return $resource('/api/user/:id/');
 }]);
 
-app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location',
-	function ($scope, $rootScope, Chats, $location) {
+app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location', '$timeout',
+	function ($scope, $rootScope, Chats, $location, $timeout) {
 
 	$rootScope.user = {
 		id: 1,
@@ -63,7 +63,11 @@ app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location',
 				return tab.id != _tab.id;
 			});
 
-			$location.url('/mockup/');
+			//workaround http://stackoverflow.com/questions/23867590/angularjs-location-url-doesnt-work-location-href-works
+			//(location not changing if $scope.$apply() already running)
+			$timeout(function () {
+				$location.url('/mockup/');
+			});
 		}
 	};
 }]);
