@@ -447,8 +447,12 @@ button, .button {
 	background: @background;
 
 	textarea {
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
 		padding-bottom: 2px;
-		height: 16px * 1.4;
+		height: 24px;
+		overflow: hidden;
 	}
 
 	.controls {

@@ -20,6 +20,19 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 	$locationProvider.html5Mode(true);
 }]);
 
+app.directive('autoresize', ['$timeout', function ($timeout) {
+	return function (scope, elem, attrs) {
+		var line;
+		elem.on('change cut paste drop keydown', function () {
+			if (!line) line = elem[0].style.height;
+			$timeout(function () {
+				elem[0].style.height = line;
+				elem[0].style.height = elem[0].scrollHeight+'px';
+			});
+		});
+	};
+}]);
+
 app.factory('Chats', ['$resource', function ($resource) {
 	return $resource('/api/chat/:id/');
 }]);
