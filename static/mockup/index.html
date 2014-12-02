@@ -76,10 +76,9 @@
 
 <script type="text/ng-template" id="write">
 	<div class="content">
-		<textarea autoresize placeholder="Ответить" ng-model="text"></textarea>
+		<textarea magic placeholder="Ответить" ng-model="text"></textarea>
 		<div class="controls">
 			<span ng-if="quotes.length">цитируется: {{quotes.length}}</span>
-			<button ng-click="send(text)">Отправить</button>
 		</div>
 	</div>
 </script>
