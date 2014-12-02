@@ -13,8 +13,8 @@
 	<div class="sidebar" ng-controller="sidebar" ng-include="'sidebar'"></div>
 	<div class="chat">
 		<div class="content" ng-view></div>
-		<div class="write" ng-controller="write" ng-include="'write'"></div>
 	</div>
+	<div class="write" ng-controller="write" ng-include="'write'"></div>
 </div>
 
 <script type="text/ng-template" id="sidebar">
@@ -75,10 +75,12 @@
 </script>
 
 <script type="text/ng-template" id="write">
-	<textarea autoresize placeholder="Ответить" ng-model="text"></textarea>
-	<div class="controls">
-		<span ng-if="quotes.length">цитируется: {{quotes.length}}</span>
-		<button ng-click="send(text)">Отправить</button>
+	<div class="content">
+		<textarea autoresize placeholder="Ответить" ng-model="text"></textarea>
+		<div class="controls">
+			<span ng-if="quotes.length">цитируется: {{quotes.length}}</span>
+			<button ng-click="send(text)">Отправить</button>
+		</div>
 	</div>
 </script>
 
