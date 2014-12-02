@@ -371,7 +371,8 @@ module.exports = {
 	getChat: getChat,
 	getChats: getChats,
 	debug: {
-		Subscribes: Subscribes
+		Subscribes: Subscribes,
+		Messages: Messages
 	}
 };
 

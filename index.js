@@ -8,6 +8,7 @@ var demo = require('./demo');
 
 var app = express();
 
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('static'));
 
@@ -48,6 +49,25 @@ app.get('/api/chat/:chat', function (req, res) {
 	res.json(chat);
 });
 
+app.post('/api/chat/:chat', function (req, res) {
+	var newChat = (req.params.chat == 1);
+	var text = req.body.text || '';
+	
+	text = text.replace(/\n/g, ' ').trim();
+
+	if (!text) return res.status(400).send();
+
+	if (newChat && !demo.createChat(1, text)) {
+		return res.status(400).send();
+	}
+
+	if (!newChat && !demo.sendMessage(1, req.params.chat, text)) {
+		return res.status(400).send();
+	}
+
+	res.send();
+});
+
 app.delete('/api/chat/:chat', function (req, res) {
 	if (demo.leaveChat(1, req.params.chat)) {
 		res.send();
@@ -57,7 +77,7 @@ app.delete('/api/chat/:chat', function (req, res) {
 });
 
 app.get('/test', function (req, res) {
-	console.log(demo.debug.Subscribes);
+	console.log(demo.debug.Messages);
 });
 
 app.listen(8070);

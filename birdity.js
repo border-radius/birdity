@@ -2,6 +2,7 @@ require('angular');
 require('angular-resource');
 require('angular-route');
 
+var stringForms = require('./lib/stringforms');
 var _ = require('lodash');
 
 var app = angular.module('birdity', ['ngResource', 'ngRoute']);
@@ -20,13 +21,30 @@ app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $lo
 	$locationProvider.html5Mode(true);
 }]);
 
-app.directive('magic', ['$timeout', function ($timeout) {
+app.directive('quotes', function () {
+	return function (scope, elem, attrs) {
+		scope.$watch(attrs.quotes, function (quotes) {
+			if (quotes) {
+				elem.text(stringForms(quotes, ['цитата', 'цитаты', 'цитат']));
+			} else {
+				elem.text('');
+			}
+		});
+	}
+});
+
+app.directive('magic', ['$timeout', '$rootScope', 'Chats', function ($timeout, $rootScope, Chats) {
 	return function (scope, elem, attrs) {
 
 		//send
 		elem.on('keydown', function (event) {
 			if (event.keyCode == 13) {
 				$timeout(function () {
+					Chats.save({
+						id: $rootScope.currentChat
+					}, {
+						text: elem.val()
+					});
 					elem.val('');
 				});
 			}
@@ -149,7 +167,6 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$locati
 	};
 
 	$scope.quote = function (message) {
-		console.log(window.getSelection());
 		if (!window.getSelection().isCollapsed) return; //don't quote if text selected
 
 		if ($rootScope.quotes.indexOf(message.id) > -1) {
