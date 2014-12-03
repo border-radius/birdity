@@ -40,28 +40,28 @@ app.post('/mail', function (req, res) {
 });
 
 app.get('/api/chat', function (req, res) {
-	var chats = demo.getChats(1);
+	var chats = demo.getChats(req.param('token'));
 	res.json(chats);
 });
 
 app.get('/api/chat/:chat', function (req, res) {
-	var chat = demo.getChat(1, req.params.chat);
+	var chat = demo.getChat(req.param('token'), req.params.chat);
 	res.json(chat);
 });
 
 app.post('/api/chat/:chat', function (req, res) {
 	var newChat = (req.params.chat == 1);
 	var text = req.body.text || '';
-	
+
 	text = text.replace(/\n/g, ' ').trim();
 
 	if (!text) return res.status(400).send();
 
-	if (newChat && !demo.createChat(1, text)) {
+	if (newChat && !demo.createChat(req.param('token'), text)) {
 		return res.status(400).send();
 	}
 
-	if (!newChat && !demo.sendMessage(1, req.params.chat, text)) {
+	if (!newChat && !demo.sendMessage(req.param('token'), req.params.chat, text)) {
 		return res.status(400).send();
 	}
 
@@ -69,7 +69,7 @@ app.post('/api/chat/:chat', function (req, res) {
 });
 
 app.delete('/api/chat/:chat', function (req, res) {
-	if (demo.leaveChat(1, req.params.chat)) {
+	if (demo.leaveChat(req.param('token'), req.params.chat)) {
 		res.send();
 	} else {
 		res.status(500).send();

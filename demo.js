@@ -13,7 +13,7 @@ var Chats = [
 var Subscribes = [];
 var Messages = []
 
-function createUser(name, userpic) {
+function createUser(name, userpic, email, password) {
 
 	var id = Users.length + 1;
 
@@ -42,7 +42,9 @@ function createUser(name, userpic) {
 	Users.push({
 		id: id,
 		name: name,
-		userpic: userpic
+		userpic: userpic,
+		email: email,
+		password: password
 	});
 
 	//subscribe to birdity
@@ -332,7 +334,16 @@ function getChat (user, chat) {
 	return _.compact(messages);
 }
 
-var me = createUser('безумный пользователь', '/userpics/1.jpg');
+function Auth (email, password) {
+	if (!email || !password) return;
+
+	return _.where(Users, {
+		email: email,
+		password: password
+	});
+}
+
+var me = createUser('безумный пользователь', '/userpics/1.jpg', 'test@test.com', 'qwe');
 var hoofoo = createUser('Смерть неизбежна', '/userpics/2.jpg');
 var komar = createUser('komar', '/userpics/3.jpg');
 var fda = createUser('4da', '/userpics/4.jpg');
@@ -370,6 +381,7 @@ module.exports = {
 	createChat: createChat,
 	getChat: getChat,
 	getChats: getChats,
+	auth: Auth,
 	debug: {
 		Subscribes: Subscribes,
 		Messages: Messages

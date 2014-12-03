@@ -19,7 +19,12 @@
 
 <script type="text/ng-template" id="sidebar">
 	<div class="content">
-		<div class="card">
+		<div class="auth" ng-if="!user">
+			<p><input type="text" placeholder="E-mail"></p>
+			<p><input type="password" placeholder="Пароль"></p>
+			<p><button>Войти</button></p>
+		</div>
+		<div class="card" ng-if="user">
 			<img ng-src="{{user.userpic}}" class="userpic">
 			<a href="" class="username">{{user.name}}</a>
 			<button>Выйти</button>
@@ -75,7 +80,7 @@
 </script>
 
 <script type="text/ng-template" id="write">
-	<div class="content">
+	<div class="content" ng-if="user">
 		<textarea magic placeholder="Ответить" ng-model="text"></textarea>
 		<div class="controls">
 			<span ng-if="quotes.length" quotes="quotes.length"></span>

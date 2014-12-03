@@ -2,6 +2,8 @@ require('angular');
 require('angular-resource');
 require('angular-route');
 
+var token = 1;
+
 var stringForms = require('./lib/stringforms');
 var _ = require('lodash');
 
@@ -70,7 +72,9 @@ app.directive('magic', ['$timeout', '$rootScope', 'Chats', function ($timeout, $
 }]);
 
 app.factory('Chats', ['$resource', function ($resource) {
-	return $resource('/api/chat/:id/');
+	return $resource('/api/chat/:id/', {
+		token: token
+	});
 }]);
 
 app.factory('Users', ['$resource', function ($resource) {
@@ -80,11 +84,11 @@ app.factory('Users', ['$resource', function ($resource) {
 app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location', '$timeout',
 	function ($scope, $rootScope, Chats, $location, $timeout) {
 
-	$rootScope.user = {
+	/*$rootScope.user = {
 		id: 1,
 		name: 'безумный пользователь',
 		userpic: 'http://i.imgur.com/9KIYE30.jpg'
-	};
+	};*/
 
 	$rootScope.quotes = [];
 
@@ -98,7 +102,7 @@ app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location', '$timeo
 		};
 	})();
 
-	$scope.tabs = Chats.query();
+	if ($rootScope.user) $scope.tabs = Chats.query();
 
 	$scope.close = function (tab) {
 		var question = (tab.type == 'user')
@@ -134,9 +138,11 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$locati
 		return $sce.trustAsResourceUrl(src);
 	};
 
-	$scope.chat = Chats.query({
-		id: $rootScope.currentChat
-	});
+	if ($rootScope.user) {
+		$scope.chat = Chats.query({
+			id: $rootScope.currentChat
+		});
+	}
 
 	$scope.join = function (message) {
 		$rootScope.changeTab({
