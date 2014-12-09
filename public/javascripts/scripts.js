@@ -4,7 +4,7 @@ require('angular-route');
 
 var token = 1;
 
-var stringForms = require('../lib/stringforms');
+var stringForms = require('../../lib/stringforms');
 var _ = require('lodash');
 
 var app = angular.module('birdity', ['ngResource', 'ngRoute']);
