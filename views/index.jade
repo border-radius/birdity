@@ -1,5 +1,17 @@
-extends layout
-
-block content
-  h1= title
-  p Welcome to #{title}
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='viewport', content='width=device-width, initial-scale=1')
+  base(href='/')
+  link(rel='stylesheet', href='/stylesheets/style.css')
+  title бирдость
+body(ng-app='birdity')
+  .app.fullscreen
+    .sidebar(ng-controller='sidebar', ng-include='"sidebar"')
+    .chat
+      .content(ng-view='')
+    .write(ng-controller='write', ng-include='"write"')
+  include blocks/sidebar
+  include blocks/chat
+  include blocks/write
+  script(src='/javascripts/scripts.js')

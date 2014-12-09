@@ -1,0 +1,18 @@
+script#sidebar(type='text/ng-template')
+  .content
+    .card
+      img.userpic(ng-src='{{user.userpic}}')
+      a.username(href='') {{user.name}}
+      button Выйти
+    a.tab(ng-repeat='tab in tabs|orderBy:"bump":true track by tab.id', href='/mockup/{{tab.id}}', ng-class='{\
+    current: tab.id == currentChat\
+    }')
+      div(ng-class='{\
+      link: tab.type == "link",\
+      user: tab.type == "user",\
+      chatlink: tab.type == "chat"\
+      }')
+        img.userpic(ng-if='tab.type == "user"', ng-src='{{tab.userpic}}')
+        | {{tab.text}}
+      .new(ng-if='tab.id != currentChat') {{tab.unread}}
+      .close(ng-if='tab.id == currentChat && tab.type != "link"', ng-click='close(tab)')

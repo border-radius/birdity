@@ -10,14 +10,14 @@ var _ = require('lodash');
 var app = angular.module('birdity', ['ngResource', 'ngRoute']);
 
 app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
-	$routeProvider.when('/mockup/', {
+	$routeProvider.when('/', {
 		templateUrl: 'chat',
 		controller: 'chat'
-	}).when('/mockup/:chat', {
+	}).when('/:chat', {
 		templateUrl: 'chat',
 		controller: 'chat'
 	}).otherwise({
-		redirectTo: '/mockup/'
+		redirectTo: '/'
 	});
 
 	$locationProvider.html5Mode(true);
@@ -84,11 +84,11 @@ app.factory('Users', ['$resource', function ($resource) {
 app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location', '$timeout',
 	function ($scope, $rootScope, Chats, $location, $timeout) {
 
-	/*$rootScope.user = {
+	$rootScope.user = {
 		id: 1,
 		name: 'безумный пользователь',
 		userpic: 'http://i.imgur.com/9KIYE30.jpg'
-	};*/
+	};
 
 	$rootScope.quotes = [];
 
@@ -121,7 +121,7 @@ app.controller('sidebar', ['$scope', '$rootScope', 'Chats', '$location', '$timeo
 			//workaround http://stackoverflow.com/questions/23867590/angularjs-location-url-doesnt-work-location-href-works
 			//(location not changing if $scope.$apply() is already running)
 			$timeout(function () {
-				$location.url('/mockup/');
+				$location.url('/');
 			});
 		}
 	};
@@ -154,7 +154,7 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$locati
 
 		$rootScope.currentChat = message.chatid;
 
-		$location.url('/mockup/' + message.chatid);
+		$location.url('/' + message.chatid);
 	};
 
 	$scope.userChat = function (message) {
@@ -169,7 +169,7 @@ app.controller('chat', ['$scope', '$rootScope', '$routeParams', '$sce', '$locati
 
 		$rootScope.currentChat = message.userchat;
 
-		$location.url('/mockup/' + message.userchat);
+		$location.url('/' + message.userchat);
 	};
 
 	$scope.quote = function (message) {
