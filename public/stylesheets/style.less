@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
   padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -6,3 +7,39 @@ body {
 a {
   color: #00B7FF;
 }
+=======
+@background: #1B192D;
+@landingBackground: rgba(31, 9, 67, 0.9);
+@buttonHoverBackground: rgba(255, 255, 255, 0.1);
+@buttonActiveBackground: rgba(255, 255, 255, 0.2);
+@sidebarBackground: rgba(0, 0, 0, 0.2);
+
+@buttonActiveBorder: #000;
+
+@color: #ddd;
+@activeColor: #fff;
+@unactiveColor: #bbb;
+@codeColor: yellow;
+@buttonDone: yellow;
+@statusColor: rgba(255, 255, 255, 0.25); //rgba(126, 104, 147, 1);
+
+@chatWidth: 650px;
+
+.clearfix {
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  };
+}
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:100,300&subset=latin,cyrillic);
+
+@import "parts/main.less";
+@import "parts/landing.less";
+@import "parts/app.less";
+@import "parts/card.less";
+@import "parts/tab.less";
+@import "parts/message.less";
+@import "parts/write.less";
+>>>>>>> generators

@@ -1,0 +1,5 @@
+script#write(type='text/ng-template')
+  .content(ng-if='user')
+    textarea(magic='', placeholder='Ответить', ng-model='text')
+    .controls
+      span(ng-if='quotes.length', quotes='quotes.length')

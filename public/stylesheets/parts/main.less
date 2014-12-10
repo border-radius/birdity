@@ -1,0 +1,114 @@
+html, body, .wrap {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: @background;
+}
+
+body, input, button, textarea {
+  font: 300 16px/1.4 Roboto, sans-serif;
+  color: @color;
+}
+
+h1, h2, h3, h4, h5 {
+  font-weight: 100;
+  color: @activeColor;
+}
+
+h1 {
+  font-size: 72px;
+}
+
+h2 {
+  font-size: 48px;
+}
+
+h3 {
+  font-size: 32px;
+}
+
+a {
+  color: @color;
+
+  &:hover {
+    color: @activeColor;
+  }
+}
+
+ul {
+  list-style-type: none;
+
+  li {
+    margin: 12px 0;
+  }
+}
+
+code {
+  font-size: 14px;
+  color: @codeColor;
+}
+
+input, textarea {
+  width: 200px;
+  background: none;
+  border: none;
+  border-bottom: 1px solid @unactiveColor;
+
+  &:focus {
+    outline: 0 none;
+    border-bottom-color: @activeColor;
+  }
+}
+textarea {
+  width: 100%;
+  resize: none;
+}
+
+button, .button {
+  padding: 2px 12px;
+  background: none;
+  border: 1px solid @color;
+  border-radius: 6px;
+  text-decoration: none;
+
+  &:hover {
+    background: @buttonHoverBackground;
+  }
+
+  &:active {
+    background: @buttonActiveBackground;
+  }
+
+  &:focus {
+    outline: 0 none;
+  }
+
+  &.done {
+    pointer-events: none;
+    border-color: @buttonDone;
+    color: @buttonDone;
+  }
+}
+
+.page {
+  margin: 0 auto;
+  padding: 25px;
+  max-width: 600px;
+}
+
+.userpic {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+}
+
+.username {
+  text-decoration: none;
+}
+
+.demo-tab {
+  padding: 15px 100px 15px 100px;
+  background: @sidebarBackground;
+}

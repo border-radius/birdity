@@ -1,0 +1,65 @@
+.tab {
+  padding: 15px;
+  width: 100%;
+  display: table;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 12px 0 0 12px;
+  text-decoration: none;
+
+  &:hover {
+    cursor: pointer;
+    color: @activeColor;
+
+    .close {
+      color: @color;
+    }
+  }
+
+  &:focus {
+    outline: 0 none;
+  }
+
+  &.current {
+    background: @background;
+  }
+
+  .user, .link, .chatlink, .new, .close{
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .user {
+    .userpic {
+      margin-right: 8px;
+      vertical-align: middle;
+    }
+  }
+
+  .chatlink, .new {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .chatlink {
+    height: 38px;
+  }
+
+  .new, .close {
+    width: 38px;
+    text-align: center;
+  }
+
+  .close {
+    border-radius: 12px;
+
+    &:after {
+      content: '×';
+    }
+
+    &:hover {
+      background: @sidebarBackground;
+    }
+  }
+}

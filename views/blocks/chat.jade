@@ -1,0 +1,23 @@
+script#chat(type='text/ng-template')
+  .message(ng-repeat='message in chat', ng-class='{\
+  own: message.userid == user.id && message.type == "text",\
+  status: message.type == "status",\
+  quoted: quotes.indexOf(message.id) > -1\
+  }', ng-click='quote(message)')
+    img.userpic(ng-src='{{message.userpic}}', alt='{{message.username}}', title='{{message.username}}', ng-click='userChat(message)')
+    .text(ng-if='message.type == "text"')
+      p {{message.text}}
+    .status(ng-if='message.type == "status"', ng-click='userChat(message)')
+      | {{message.username}}
+      span(ng-if='message.status == 1') подписался
+      span(ng-if='message.status == 2') отписался
+      span(ng-if='message.status == 3') вас заблокировал
+      span(ng-if='message.status == 4') вас разблокировал
+    .attaches(ng-if='message.attaches')
+      .media(ng-repeat='attach in message.attaches')
+        img(ng-if='attach.src', ng-src='{{attach.src}}')
+        video(ng-if='attach.poster', poster='{{attach.poster}}', autoplay='autoplay', loop='loop', muted='muted')
+          source(ng-if='attach.webm', type='video/webm', ng-src='{{trust(attach.webm)}}')
+          source(ng-if='attach.mp4', type='video/mp4', ng-src='{{trust(attach.mp4)}}')
+    .join(ng-if='message.newChat')
+      button(ng-click='join(message)') {{message.newChat}}
